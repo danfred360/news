@@ -1,0 +1,52 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "docker compose: up (development)",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "compose",
+                "--profile",
+                "development",
+                "up",
+                "-d"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "docker compose: up (production)",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "compose",
+                "--profile",
+                "production",
+                "up",
+                "-d"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "docker compose: down",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "compose",
+                "down"
+            ],
+            "problemMatcher": [],
+            "isBackground": true
+        },
+        {
+            "label": "open-swagger",
+            "type": "shell",
+            "command": "sleep 5 && open http://127.0.0.1:57765/docs",
+            "windows": {
+                "command": "timeout /T 5 && start http://127.0.0.1:57765/docs"
+            },
+            "problemMatcher": [],
+            "detail": "Opens the Swagger UI page in the default browser"
+        }
+    ]
+}

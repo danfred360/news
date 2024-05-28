@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: FastAPI",
+            "name": "fastapi debugpy",
             "type": "python",
             "request": "launch",
             "module": "uvicorn",
@@ -20,7 +20,9 @@
             "cwd": "${workspaceFolder}",
             "windows": {
                 "python": "${workspaceFolder}/.venv/Scripts/python.exe"
-            }
+            },
+            "preLaunchTask": "docker compose: up (development)",
+            "postDebugTask": "docker compose: down"
         }
     ]
 }

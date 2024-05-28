@@ -1,0 +1,52 @@
+services:
+  database:
+    build:
+      context: database
+      dockerfile: Dockerfile
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    networks:
+      - news
+    ports:
+      - "5432:5432"
+    profiles:
+      - development
+      - production
+
+  web:
+    build: .
+    command: poetry run uvicorn src.main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - database
+    networks:
+      - news
+    profiles:
+      - production
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - database
+    networks:
+      - news
+    profiles:
+      - development
+      - production
+
+networks:
+  news:
+    driver: bridge
+
+volumes:
+  pg_data:

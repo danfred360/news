@@ -12,7 +12,11 @@ def get_config():
 
 @final
 class Config(BaseSettings):
-    app_name: str = "blogger"
+    app_name: str = "news"
     news_api_key: Final[str]
+    postgres_user: Final[str]
+    postgres_password: Final[str]
+    postgres_db: Final[str]
+    database_url: Final[str]
 
     model_config = SettingsConfigDict(env_file=".env")

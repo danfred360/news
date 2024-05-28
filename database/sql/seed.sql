@@ -1,0 +1,1 @@
+INSERT INTO items (name, description) VALUES ('Item1', 'Description for Item1');
